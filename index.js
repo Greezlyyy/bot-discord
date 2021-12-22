@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] }); //<-- RICORDARSI QUESTO
 
-client.login("OTIzMjQ2MzE2NTA1Njc3ODQ2.YcNOIg.DDMAaNeAI4j3tNWtdaUiE--9LGY");
+client.login(process.env.token);
 
 client.on("ready", () => {
     console.log("ONLINE")

@@ -7,7 +7,7 @@ client.on("ready", () => {
     console.log("ONLINE")
 })
 
-var embed = new Discord.MessageEmbed()
+var embed1 = new Discord.MessageEmbed()
     .setColor("AQUA")
     .setTitle("Supporto")
     .setDescription(`Ti serve aiuto? Nessun problema! Usa la reazione qua sotto per creare un nuovo ticket dove il nostro staff ti assisterà.`)
@@ -15,7 +15,7 @@ var embed = new Discord.MessageEmbed()
 //Prima di tutto mandare il messaggio del ticket
 client.on("message", message => {
     if (message.content == "!ticket") {
-        message.channel.send(embed)
+        message.channel.send(embed1)
             .then(msg => msg.react("🧾")) //Personalizzare l'emoji della reaction
     }
 })

@@ -23,7 +23,7 @@ client.on("message", message => {
 //BENVENUTO
 client.on("guildMemberAdd", (member) => {
     //console.log(member.guild); Per avere tutte le info del utente e del server
-    client.channels.cache.get("921819183363264583").send("Benvenuto " + member.toString() + " in **" + member.guild.name + "**\rSei il **" + member.guild.memberCount + "° membro**");
+    client.channels.cache.get("921819183363264583").send("Benvenuto " + member.toString() + " nel **" + member.guild.name + "**Sei il **" + member.guild.memberCount + "° membro**");
 })
 
 //ADDIO

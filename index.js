@@ -39,7 +39,7 @@ client.on("messageReactionAdd", async function (messageReaction, user) {
                 type: "text"
             }).then(canale => {
                 canale.setTopic(`User ID: ${user.id}`);
-                canale.setParent("921819177998757918") //Settare la categoria
+                canale.setParent("923479737832181760") //Settare la categoria
                 canale.overwritePermissions([
                     {
                         id: server.id,

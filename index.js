@@ -20,11 +20,6 @@ client.on("message", message => {
     }
 })
 
-client.on("guildMemberAdd", member => {
-    var canale = client.channels.cache.get("923692421353705535")
-    canale.setName("Members: " + member.guild.memberCount)
-})
-
 client.on("message", (message) => {
     if (message.content.startsWith("!kick")) {
         var utenteKick = message.mentions.members.first();
@@ -71,6 +66,11 @@ client.on("message", (message) => {
             .then(() => message.channel.send("<@" + utenteBan + ">" + " è stato bannato"))
 
     }
+})
+
+client.on("guildMemberAdd", member => {
+    var canale = client.channels.cache.get("923693673168916510")
+    canale.setName("Members: " + member.guild.memberCount)
 })
 
 client.on("message", message => {

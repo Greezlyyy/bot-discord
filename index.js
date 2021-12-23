@@ -70,7 +70,7 @@ client.on("messageReactionAdd", async function (messageReaction, user) {
                 .setTitle("Supporto")
                 .setDescription("Lo staff ti assisterà a breve, attendi")
 
-            server.channels.create(user.username, {
+            server.channels.create("ticket-" + user.username, {
                 type: "text"
             }).then(canale => {
                 canale.setTopic(`User ID: ${user.id}`);

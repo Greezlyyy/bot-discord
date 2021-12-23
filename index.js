@@ -27,9 +27,9 @@ client.on("guildMemberAdd", (member) => {
 })
 
 //ADDIO
-client.on("guildMemberAdd", (member) => {
+client.on("guildMemberRemove", (member) => {
     //console.log(member.guild); Per avere tutte le info del utente e del server
-    client.channels.cache.get("921819183363264583").send("Addio " + member.toString() + ", torna presto nel **" + member.guild.name + "");
+    client.channels.cache.get("921819183363264583").send("Addio " + member.toString() + ", torna presto nel **" + member.guild.name + "** !");
 })
 
 var embed = new Discord.MessageEmbed()

@@ -70,7 +70,7 @@ client.on("message", (message) => {
 
 client.on("guildMemberAdd", member => {
     var canale = client.channels.cache.get("923693673168916510")
-    canale.setName("Members: " + member.guild.memberCount)
+    canale.setParent("Members: " + member.guild.memberCount)
 })
 
 client.on("message", message => {

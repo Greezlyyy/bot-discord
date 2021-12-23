@@ -20,6 +20,54 @@ client.on("message", message => {
     }
 })
 
+client.on("message", (message) => {
+    if (message.content.startsWith("!kick")) {
+        var utenteKick = message.mentions.members.first();
+
+        if (!message.member.hasPermission("KICK_MEMBERS")) {
+            message.channel.send('Non hai il permesso');
+            return;
+        }
+
+        if (!utenteKick) {
+            message.channel.send('Non hai menzionato nessun utente');
+            return;
+        }
+
+        if (!message.mentions.members.first().kickable) {
+            message.channel.send('Io non ho il permesso');
+            return
+        }
+
+        utenteKick.kick()
+            .then(() => message.channel.send("<@" + utenteKick + ">" + " kiccato"))
+
+    }
+
+    if (message.content.startsWith("!ban")) {
+        var utenteBan = message.mentions.members.first();
+
+        if (!message.member.hasPermission("BAN_MEMBERS")) {
+            message.channel.send('Non hai il permesso');
+            return;
+        }
+
+        if (!utenteBan) {
+            message.channel.send('Non hai menzionato nessun utente');
+            return;
+        }
+
+        if (!utenteBan.kickable) {
+            message.channel.send('Io non ho il permesso');
+            return
+        }
+
+        utenteBan.ban()
+            .then(() => message.channel.send("<@" + utenteBan + ">" + " è statobannato"))
+
+    }
+})
+
 //BENVENUTO
 client.on("guildMemberAdd", (member) => {
     //console.log(member.guild); Per avere tutte le info del utente e del server

@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] }); //<-- RICORDARSI QUESTO
 
-client.login("OTIzMjQ2MzE2NTA1Njc3ODQ2.YcNOIg.0V7OyPKV__dBTMp6iWpEb0g4l9M");
+client.login(process.env.token);
 
 client.on("ready", () => {
     console.log("ONLINE")
@@ -19,15 +19,6 @@ client.on("message", message => {
             .then(msg => msg.react("🧾")) //Personalizzare l'emoji della reaction
     }
 })
-
-client.on("guildMemberAdd", member => {
-    var canale = client.channels.cache.get("923697687818281010")
-    canale.setName("👾│members: " + member.guild.memberCount) //Impostare il nome del canale
-});
-client.on("guildMemberRemove", member => {
-    var canale = client.channels.cache.get("923697687818281010")
-    canale.setName("👾│members: " + member.guild.memberCount) //Impostare il nome del canale
-});
 
 client.on("message", (message) => {
     if (message.content.startsWith("!kick")) {

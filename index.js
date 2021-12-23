@@ -20,59 +20,12 @@ client.on("message", message => {
     }
 })
 
-client.on("message", (message) => {
-    if (message.content.startsWith("!kick")) {
-        var utenteKick = message.mentions.members.first();
-
-        if (!message.member.hasPermission("KICK_MEMBERS")) {
-            message.channel.send('Non hai il permesso');
-            return;
-        }
-
-        if (!utenteKick) {
-            message.channel.send('Non hai menzionato nessun utente');
-            return;
-        }
-
-        if (!message.mentions.members.first().kickable) {
-            message.channel.send('Io non ho il permesso');
-            return
-        }
-
-        utenteKick.kick()
-            .then(() => message.channel.send("<@" + utenteKick + ">" + " è stato kickato"))
-
-    }
-
-    if (message.content.startsWith("!ban")) {
-        var utenteBan = message.mentions.members.first();
-
-        if (!message.member.hasPermission("BAN_MEMBERS")) {
-            message.channel.send('Non hai il permesso');
-            return;
-        }
-
-        if (!utenteBan) {
-            message.channel.send('Non hai menzionato nessun utente');
-            return;
-        }
-
-        if (!utenteBan.kickable) {
-            message.channel.send('Io non ho il permesso');
-            return
-        }
-
-        utenteBan.ban()
-            .then(() => message.channel.send("<@" + utenteBan + ">" + " è stato bannato"))
-
-    }
-})
-
 const disbut = require("discord-buttons")
 disbut(client);
 
 const { MessageButton, MessageActionRow } = require("discord-buttons")
 const { MessageMenuOption, MessageMenu } = require("discord-buttons")
+
 
 client.on("message", message => {
     if (message.content == "!bottoni") {
@@ -89,11 +42,11 @@ client.on("message", message => {
             .addComponent(button1)
             .addComponent(button2)
 
-        var embed96 = new Discord.MessageEmbed()
+        var embedCarina = new Discord.MessageEmbed()
             .setTitle("Bottoni")
             .setDescription("Clicca sul bottone")
 
-        message.channel.send(embed96, row)
+        message.channel.send(embedCarina, row)
     }
 
     if (message.content == "!menu") {
@@ -141,6 +94,54 @@ client.on("clickMenu", (menu) => {
             menu.message.channel.send("opzione 1")
         if (menu.values.includes("opzione2"))
             menu.message.channel.send("opzione 2")
+    }
+})
+
+client.on("message", (message) => {
+    if (message.content.startsWith("!kick")) {
+        var utenteKick = message.mentions.members.first();
+
+        if (!message.member.hasPermission("KICK_MEMBERS")) {
+            message.channel.send('Non hai il permesso');
+            return;
+        }
+
+        if (!utenteKick) {
+            message.channel.send('Non hai menzionato nessun utente');
+            return;
+        }
+
+        if (!message.mentions.members.first().kickable) {
+            message.channel.send('Io non ho il permesso');
+            return
+        }
+
+        utenteKick.kick()
+            .then(() => message.channel.send("<@" + utenteKick + ">" + " è stato kickato"))
+
+    }
+
+    if (message.content.startsWith("!ban")) {
+        var utenteBan = message.mentions.members.first();
+
+        if (!message.member.hasPermission("BAN_MEMBERS")) {
+            message.channel.send('Non hai il permesso');
+            return;
+        }
+
+        if (!utenteBan) {
+            message.channel.send('Non hai menzionato nessun utente');
+            return;
+        }
+
+        if (!utenteBan.kickable) {
+            message.channel.send('Io non ho il permesso');
+            return
+        }
+
+        utenteBan.ban()
+            .then(() => message.channel.send("<@" + utenteBan + ">" + " è stato bannato"))
+
     }
 })
 

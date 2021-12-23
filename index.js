@@ -20,6 +20,17 @@ client.on("message", message => {
     }
 })
 
+//BENVENUTO
+client.on("guildMemberAdd", (member) => {
+    //console.log(member.guild); Per avere tutte le info del utente e del server
+    client.channels.cache.get("921819183363264583").send("Ciao " + member.toString() + " benvunuto in **" + member.guild.name + "**\rSei il **" + member.guild.memberCount + "° membro**");
+})
+
+//ADDIO
+client.on("guildMemberRemove", (member) => {
+    client.channels.cache.get("921819183363264583").send("Ciao ciao" + member.toString() + ", torna presto!");
+})
+
 var embed = new Discord.MessageEmbed()
     .setColor("BLUE")
     .setTitle("Regole")

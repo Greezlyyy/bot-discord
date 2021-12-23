@@ -71,7 +71,7 @@ client.on("message", (message) => {
 client.on("messageCreate", message => {
     if (message.member.roles.cache.has("921819143748079636") || message.member.roles.cache.has("921819145279000716")) return
 
-    var parolacce = ["cazzo", "fanculo", "vaffanculo", "puttana", "bastardo", "troia", "trimone", "dio", "madonna", "fallito", "allah", "buddah", "budda", "anubi"]
+    var parolacce = ["cazzo", "fanculo", "vaffanculo", "puttana", "bastardo", "troia", "trimone", "dio", "madonna", "fallito"]
     var trovata = false;
     var testo = message.content;
 

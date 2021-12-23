@@ -68,26 +68,79 @@ client.on("message", (message) => {
     }
 })
 
-client.on("messageCreate", message => {
-    var parolacce = ["cazzo", "fanculo", "vaffanculo", "puttana", "bastardo", "troia", "fallito"]
-    var trovata = false;
-    var testo = message.content;
+const disbut = require("discord-buttons")
+disbut(client);
 
-    parolacce.forEach(parola => {
-        if (message.content.toLowerCase().includes(parola.toLowerCase())) {
-            trovata = true;
-            testo = testo.replace(eval(`/${parola}/g`), "***");
-        }
-    })
+const { MessageButton, MessageActionRow } = require("discord-buttons")
+const { MessageMenuOption, MessageMenu } = require("discord-buttons")
 
-    if (trovata) {
-        message.delete();
-        var embed7 = new Discord.MessageEmbed()
-            .setColor("RED")
-            .setTitle("Hai detto una parolaccia!")
-            .setDescription("Hai scritto un messaggio con parole bloccate\rIl tuo messaggio: " + testo)
+client.on("message", message => {
+    if (message.content == "!bottoni") {
+        var button1 = new MessageButton()
+            .setLabel("Cliccami")
+            .setStyle("url")
+            .setURL("https://www.google.it")
+        var button2 = new MessageButton()
+            .setLabel("Ciao")
+            .setStyle("green")
+            .setID("ciao")
 
-        message.channel.send({ embeds: [embed7] })
+        var row = new MessageActionRow()
+            .addComponent(button1)
+            .addComponent(button2)
+
+        var embed = new Discord.MessageEmbed()
+            .setTitle("Bottoni")
+            .setDescription("Clicca sul bottone")
+
+        message.channel.send(embed, row)
+    }
+
+    if (message.content == "!menu") {
+        var option1 = new MessageMenuOption()
+            .setLabel("Opzione 1")
+            .setDescription("Questa è la prima opzione")
+            .setValue("opzione1")
+            .setEmoji("😀")
+
+        var option2 = new MessageMenuOption()
+            .setLabel("Opzione 2")
+            .setDescription("Questa è la seconda opzione")
+            .setValue("opzione2")
+            .setEmoji("🤑")
+
+        var menu = new MessageMenu()
+            .setPlaceholder("Seleziona un elemento")
+            .setID("menu")
+            .setMinValues(1)
+            .setMaxValues(2)
+            .addOption(option1)
+            .addOption(option2)
+
+
+        message.channel.send("Clicca sul menu", menu)
+    }
+})
+
+client.on("clickButton", (button) => {
+    if (button.id == "ciao") {
+        button.reply.send("Ciao anche a te!", true)
+    }
+})
+
+client.on("clickMenu", (menu) => {
+    if (menu.id == "menu") {
+        menu.reply.defer()
+        //Se si ha solo un opzione da selezionare
+        if (menu.values[0] == "opzione1")
+            menu.message.channel.send("Opzione 1")
+        if (menu.values[0] == "opzione2")
+            menu.message.channel.send("Opzione 2")
+        //Se si hanno piu opzioni da selezionare
+        if (menu.values.includes("opzione1"))
+            menu.message.channel.send("opzione 1")
+        if (menu.values.includes("opzione2"))
+            menu.message.channel.send("opzione 2")
     }
 })
 

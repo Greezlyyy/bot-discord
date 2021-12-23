@@ -21,12 +21,8 @@ client.on("message", message => {
 })
 
 client.on("guildMemberAdd", member => {
-    var canale = client.channels.cache.get("923691572132970526")
-    canale.setName("👾│members: " + member.guild.memberCount) //Impostare il nome del canale
-});
-client.on("guildMemberRemove", member => {
-    var canale = client.channels.cache.get("923691572132970526")
-    canale.setName("👾│members: " + member.guild.memberCount) //Impostare il nome del canale
+    var canale = client.channels.cache.get("923692421353705535")
+    canale.setName("〔👾〕membri: " + member.guild.memberCount) //Impostare il nome del canale
 });
 
 client.on("message", (message) => {

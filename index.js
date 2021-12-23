@@ -20,13 +20,6 @@ client.on("message", message => {
     }
 })
 
-global.client.codes = new Discord.Collection();
-const codesFolder = fs.readdirSync("./code");
-for (const file of codesFolder) {
-    const code = require(`./code/${file}`);
-    client.codes.set(code.name, code);
-}
-
 if (!client.commands.has(command.toLowerCase()) && !client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(command.toLowerCase()))) {
     let embed = new Discord.MessageEmbed()
         .setTitle("Comando non esistente")

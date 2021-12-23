@@ -20,56 +20,6 @@ client.on("message", message => {
     }
 })
 
-if (!client.commands.has(command.toLowerCase()) && !client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(command.toLowerCase()))) {
-    let embed = new Discord.MessageEmbed()
-        .setTitle("Comando non esistente")
-        .setColor("#FF931E")
-        .setDescription(`Il comando \`${prefix}${command}\` non esiste`)
-
-    var data = new Date()
-    if ((data.getMonth() == 9 && data.getDate() == 31) || (data.getMonth() == 10 && data.getDate() == 1)) {
-        embed.setThumbnail("https://i.postimg.cc/x1MgSvfQ/Not-Found-Halloween.png")
-    }
-    else {
-        embed.setThumbnail("https://i.postimg.cc/MZj5dJFW/Not-found.png")
-    }
-
-    if (!utenteMod(message.member)) //Se l"utente non è staff
-        message.channel.send(embed)
-            .then(msg => {
-                message.delete({ timeout: 15000 })
-                    .catch(() => { })
-                msg.delete({ timeout: 15000 })
-                    .catch(() => { })
-            })
-    return
-}
-
-let comando = client.commands.get(command) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(command));
-
-if (comando.onlyStaff && !utenteMod(message.member)) {
-    let embed = new Discord.MessageEmbed()
-        .setTitle("Non hai il permesso")
-        .setColor("#9E005D")
-        .setDescription(`Non puoi eseguire il comando \`${prefix}${command}\` perchè non hai il permesso`)
-
-    var data = new Date()
-    if ((data.getMonth() == 9 && data.getDate() == 31) || (data.getMonth() == 10 && data.getDate() == 1)) {
-        embed.setThumbnail("https://i.postimg.cc/W3b7rxMp/Not-Allowed-Halloween.png")
-    }
-    else {
-        embed.setThumbnail("https://i.postimg.cc/D0scZ1XW/No-permesso.png")
-    }
-
-    message.channel.send(embed).then(msg => {
-        message.delete({ timeout: 15000 })
-            .catch(() => { })
-        msg.delete({ timeout: 15000 })
-            .catch(() => { })
-    })
-    return
-}
-
 client.on("messageReactionAdd", async function (messageReaction, user) {
     if (user.bot) return
 

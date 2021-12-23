@@ -29,19 +29,19 @@ const { MessageButton, MessageActionRow } = require("discord-buttons")
 client.on("message", message => {
     if (message.content == "!bottoni") {
         var button1 = new MessageButton()
-            .setLabel("Prova")
-            .setStyle("blue")
-            .setID("prova")
+            .setLabel("Test")
+            .setStyle("green")
+            .setID("test")
 
         var row = new MessageActionRow()
             .addComponent(button1)
             .addComponent(button2)
 
         var embedCarina = new Discord.MessageEmbed()
-            .setTitle("Test")
+            .setTitle("Prova")
             .setDescription("Clicca sul bottone")
 
-        message.channel.send(embedCarina, row)
+        message.channel.send(embedCarina)
     }
 })
 

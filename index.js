@@ -20,30 +20,14 @@ client.on("message", message => {
     }
 })
 
-const disbut = require("discord-buttons")
-disbut(client);
-
-const { MessageButton, MessageActionRow } = require("discord-buttons")
-
-
-client.on("message", message => {
-    if (message.content == "!bottoni") {
-        var button1 = new MessageButton()
-            .setLabel("Test")
-            .setStyle("green")
-            .setID("test")
-
-        var row = new MessageActionRow()
-            .addComponent(button1)
-            .addComponent(button2)
-
-        var embedCarina = new Discord.MessageEmbed()
-            .setTitle("Prova")
-            .setDescription("Clicca sul bottone")
-
-        message.channel.send(embedCarina)
-    }
-})
+client.on("guildMemberAdd", member => {
+    var canale = client.channels.cache.get("923691572132970526")
+    canale.setName("👾│members: " + member.guild.memberCount) //Impostare il nome del canale
+});
+client.on("guildMemberRemove", member => {
+    var canale = client.channels.cache.get("923691572132970526")
+    canale.setName("👾│members: " + member.guild.memberCount) //Impostare il nome del canale
+});
 
 client.on("message", (message) => {
     if (message.content.startsWith("!kick")) {

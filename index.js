@@ -68,6 +68,30 @@ client.on("message", (message) => {
     }
 })
 
+client.on("messageCreate", message => {
+    if (message.member.roles.cache.has("921819143748079636") || message.member.roles.cache.has("921819145279000716")) return
+
+    var parolacce = ["cazzo", "fanculo", "vaffanculo", "puttana", "bastardo", "troia", "trimone", "dio", "madonna", "fallito", "allah", "buddah", "budda", "anubi"]
+    var trovata = false;
+    var testo = message.content;
+
+    parolacce.forEach(parola => {
+        if (message.content.toLowerCase().includes(parola.toLowerCase())) {
+            trovata = true;
+            testo = testo.replace(eval(`/${parola}/g`), "###");
+        }
+    })
+
+    if (trovata) {
+        message.delete();
+        var embed = new Discord.MessageEmbed()
+            .setTitle("Hai detto una parolaccia")
+            .setDescription("Hai scritto un messaggio con parole bloccate\rIl tuo messaggio: " + testo)
+
+        message.channel.send({ embeds: [embed] })
+    }
+})
+
 client.on("message", message => {
     if (message.content.startsWith("!clear")) {
 

@@ -46,6 +46,11 @@ var embed = new Discord.MessageEmbed()
         }
     })
 
+    var embed2 = new Discord.MessageEmbed()
+        .setColor("RED")
+        .setTitle("Errore")
+        .setDescription("Hai già un ticket aperto!")
+
 client.on("messageReactionAdd", async function (messageReaction, user) {
     if (user.bot) return
 
@@ -56,9 +61,14 @@ client.on("messageReactionAdd", async function (messageReaction, user) {
             messageReaction.users.remove(user);
             var server = messageReaction.message.channel.guild;
             if (server.channels.cache.find(canale => canale.topic == `User ID: ${user.id}`)) {
-                user.send("Hai gia un ticket aperto").catch(() => { })
+                user.send(embed2).catch(() => { })
                 return
             }
+
+            var embed3 = new Discord.MessageEmbed()
+                .setColor("AQUA")
+                .setTitle("Supporto")
+                .setDescription("Lo staff ti assisterà a breve, attendi")
 
             server.channels.create(user.username, {
                 type: "text"
@@ -75,7 +85,7 @@ client.on("messageReactionAdd", async function (messageReaction, user) {
                         allow: ["VIEW_CHANNEL"]
                     }
                 ])
-                canale.send("Lo staff ti assisterà a breve, attendi.")
+                canale.send(embed3)
             })
         }
     }

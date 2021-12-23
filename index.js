@@ -20,6 +20,20 @@ client.on("message", message => {
     }
 })
 
+var embed = new Discord.MessageEmbed()
+    .setColor("BLUE")
+    .setTitle("Regole")
+    .setDescription(`✘ Nessun contenuto illegale.
+    ✘ Nessun razzismo.
+    ✘ Nessun tipo di spam.
+    ✘ Nessuna pubblicità/link senza permesso.`)
+
+    client.on("message", message => {
+        if (message.content == "!regole") {
+            message.channel.send(embed)
+        }
+    })
+
 client.on("messageReactionAdd", async function (messageReaction, user) {
     if (user.bot) return
 
@@ -148,17 +162,3 @@ client.on("message", message => {
         }
     }
 })
-
-var embed = new Discord.MessageEmbed()
-    .setColor("BLUE")
-    .setTitle("Regole")
-    .setDescription(`✘ Nessun contenuto illegale.
-    ✘ Nessun razzismo.
-    ✘ Nessun tipo di spam.
-    ✘ Nessuna pubblicità/link senza permesso.`)
-
-    client.on("message", message => {
-        if (message.content == "!regole") {
-            message.channel.send(embed)
-        }
-    })

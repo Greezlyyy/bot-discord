@@ -89,11 +89,11 @@ client.on("message", message => {
             .addComponent(button1)
             .addComponent(button2)
 
-        var embed = new Discord.MessageEmbed()
+        var embed96 = new Discord.MessageEmbed()
             .setTitle("Bottoni")
             .setDescription("Clicca sul bottone")
 
-        message.channel.send(embed, row)
+        message.channel.send(embed96, row)
     }
 
     if (message.content == "!menu") {

@@ -20,6 +20,17 @@ client.on("message", message => {
     }
 })
 
+//Comandi
+client.commands = new Discord.Collection();
+const commandsFolder = fs.readdirSync("./commands");
+for (const folder of commandsFolder) {
+    const commandsFiles = fs.readdirSync(`./commands/${folder}`).filter(file => file.endsWith(".js"));
+    for (const file of commandsFiles) {
+        const command = require(`./commands/${folder}/${file}`);
+        client.commands.set(command.name, command);
+    }
+}
+
 
 client.on("messageReactionAdd", async function (messageReaction, user) {
     if (user.bot) return

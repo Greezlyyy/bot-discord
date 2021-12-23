@@ -40,7 +40,7 @@ client.on("message", (message) => {
         }
 
         utenteKick.kick()
-            .then(() => message.channel.send("<@" + utenteKick + ">" + " kiccato"))
+            .then(() => message.channel.send("<@" + utenteKick + ">" + " è stato kickato"))
 
     }
 
@@ -63,7 +63,7 @@ client.on("message", (message) => {
         }
 
         utenteBan.ban()
-            .then(() => message.channel.send("<@" + utenteBan + ">" + " è statobannato"))
+            .then(() => message.channel.send("<@" + utenteBan + ">" + " è stato bannato"))
 
     }
 })

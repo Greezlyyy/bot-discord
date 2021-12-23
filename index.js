@@ -22,8 +22,8 @@ client.on("message", message => {
 
 client.on("guildMemberAdd", member => {
     var canale = client.channels.cache.get("923692421353705535")
-    canale.setName("〔👾〕membri: " + member.guild.memberCount) //Impostare il nome del canale
-});
+    canale.setName("Members: " + member.guild.memberCount)
+})
 
 client.on("message", (message) => {
     if (message.content.startsWith("!kick")) {
